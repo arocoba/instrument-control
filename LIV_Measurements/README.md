@@ -19,11 +19,28 @@ The laser temperature is automatically stabilized at 20 °C using the integrated
 
 * MATLAB
 * MATLAB Serial Port support
-* Thorlabs Power Meter MATLAB driver (`ThorlabsPowerMeter`)
+* ThorlabsPowerMeter MATLAB wrapper
+
+## Driver Installation
+
+The power meter communication relies on the MATLAB wrapper `ThorlabsPowerMeter`, developed by Zimo Zhao (University of Oxford).
+
+Before running the script:
+
+1. Install the Thorlabs Optical Power Monitor software.
+2. Download the `ThorlabsPowerMeter` MATLAB wrapper.
+3. Verify that the required Thorlabs .NET DLL files are available on your system.
+4. Edit the variable `METERPATHDEFAULT` or 'MOTORPATHDEFAULT' for a previous typo, inside `ThorlabsPowerMeter.m` so that it points to the folder containing the DLL files.
+
+Depending on the local MATLAB and VISA installation, it may also be necessary to add the VISA runtime path:
+
+```matlab
+setenv('PATH',[getenv('PATH') ';C:\Program Files\IVI Foundation\VISA\Win64\Bin']);
+```
+
+If the power meter is not detected, check both the DLL path and the VISA installation.
 
 ## Usage
-
-Define the current vector in mA and run:
 
 ```matlab
 current = 0:5:100;
@@ -46,9 +63,13 @@ The script also generates:
 
 * The script assumes the Arroyo controller is connected to `COM5`.
 * The laser temperature is fixed at 20 °C.
-* The optical power meter wavelength is configured to 635 nm.
+* The power meter wavelength is configured to 635 nm.
 * Current resolution is set to 0.1 mA.
 * The laser output is automatically disabled at the end of the measurement.
+
+## Acknowledgements
+
+Power meter communication is based on the MATLAB wrapper developed by Zimo Zhao (University of Oxford) for Thorlabs PM100 series power meters.
 
 ## Author
 
