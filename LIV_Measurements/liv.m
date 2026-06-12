@@ -2,6 +2,11 @@ function out = liv(cur_v)
 
 % Takes an input vector cur_v in mA
 % Returns V and L at each I
+% example use:
+% cur_v = [5:5:100]; is current between 5 mA and 100 mA with 5 mA step
+% call:
+& lv = liv(cur_v);
+% returns two columns matrix lv, with first column power, second column voltage
 
 close all;
 
