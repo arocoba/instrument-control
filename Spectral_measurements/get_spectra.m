@@ -1,9 +1,20 @@
 function out = get_spectra(na)
 
-% get spectra with andor spectrometer.
-% input: na average over na spectra.
-% output: out is a 1x1024 vector. 
-% er (below) is the standar deviation over na spectra. 
+% GET_SPECTRA Acquire spectra from an Andor spectrometer.
+%
+% Input
+%   na : Number of acquisitions to average.
+%
+% Output
+%   out : Column vector (1024 x 1) containing the acquired spectrum.
+%         If na > 1, out corresponds to the average spectrum.
+%
+% Notes
+%   - The Andor camera must be initialized previously using init_andor().
+%   - The detector is assumed to be configured in Full Vertical Binning (FVB) mode.
+%   - The detector size is assumed to be 1024 pixels.
+%   - For na > 1, multiple spectra are acquired and averaged to improve
+%     the signal-to-noise ratio.
 
 if libisloaded('andor')    
 spc = zeros(na,1024);
