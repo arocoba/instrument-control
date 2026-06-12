@@ -45,7 +45,9 @@ end
     out = mean(spc); % average of each point of spectra
 %     out = sum(spc,1); %cumulative sum of acq. spectra
     out = out';
-    er = std(spc); % std dev for each point of acq. spectra
+    % er is the pixel-by-pixel standard deviation of the acquired spectra.
+    % Currently not returned by the function.
+    er = std(spc); 
     else
     out = spc;
     out = out';
